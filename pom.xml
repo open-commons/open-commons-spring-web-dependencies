@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>open.commons</groupId>
 	<artifactId>open-commons-spring-web-dependencies</artifactId>
-	<version>0.1.0-SNAPSHOT</version>
+	<version>0.8.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Open Commons Spring Web Dependencies</name>
 	<description>Open Commons Spring Web Projects common dependencies Management.</description>

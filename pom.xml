@@ -1,11 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>open.commons</groupId>
-		<artifactId>open-commons-core-dependencies</artifactId>
-		<version>2.1.0-SNAPSHOT</version>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.7.15</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
+	<groupId>open.commons</groupId>
 	<artifactId>open-commons-spring-web-dependencies</artifactId>
 	<version>0.8.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
@@ -32,24 +33,8 @@
 	</scm>
 
 	<properties>
-		<encoding>UTF-8</encoding>
-		<java.version>1.8</java.version>
-
-		<compile.encoding>UTF-8</compile.encoding>
-		<compile.source.version>1.8</compile.source.version>
-		<compile.target.version>1.8</compile.target.version>
-
-		<maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
-		<maven-source-plugin.version>2.2.1</maven-source-plugin.version>
-		<maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
-
-		<spring-core.version>[5.3.29]</spring-core.version>
 		<spring-boot.version>2.7.15</spring-boot.version>
-		<slf4j-api.version>2.0.9</slf4j-api.version>
 		<reflections.version>0.9.11</reflections.version>
-		<servlet-api.version>2.5</servlet-api.version>
-		<httpclient.version>[4.5.13,)</httpclient.version>
-		<fasterxml-jackson-core.version>2.12.4</fasterxml-jackson-core.version>
 		<springdoc-openapi-ui.version>1.7.0</springdoc-openapi-ui.version>
 
 		<open-commons-core.version>2.1.0-SNAPSHOT</open-commons-core.version>
@@ -103,45 +88,14 @@
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-core</artifactId>
-				<version>${spring-core.version}</version>
+				<version>${spring-framework.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-webmvc</artifactId>
-				<version>${spring-core.version}</version>
+				<version>${spring-framework.version}</version>
 			</dependency>
 			<!-- end: spring-framework -->
-			<!-- ********************** -->
-
-			<!-- ********************** -->
-			<!-- begin: spring boot -->
-			<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot -->
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot</artifactId>
-				<version>${spring-boot.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-configuration-processor</artifactId>
-				<version>${spring-boot.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-actuator</artifactId>
-				<version>${spring-boot.version}</version>
-			</dependency>
-			<!-- end: spring boot -->
-			<!-- ********************** -->
-
-			<!-- ********************** -->
-			<!-- begin: Spring Security -->
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-security</artifactId>
-				<version>${spring-boot.version}</version>
-			</dependency>
-			<!-- end: Spring Security -->
 			<!-- ********************** -->
 
 			<!-- ************** -->
@@ -155,28 +109,6 @@
 			<!-- end: Pagination -->
 			<!-- ************** -->
 
-			<!-- ************** -->
-			<!-- begin: validation -->
-			<!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
-			<dependency>
-				<groupId>javax.validation</groupId>
-				<artifactId>validation-api</artifactId>
-				<version>2.0.1.Final</version>
-			</dependency>
-			<!-- end: validation -->
-			<!-- ************** -->
-
-			<!-- ********************** -->
-			<!-- begin: slf4j -->
-			<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-api</artifactId>
-				<version>${slf4j-api.version}</version>
-			</dependency>
-			<!-- end: slf4j -->
-			<!-- ********************** -->
-
 			<!-- ********************** -->
 			<!-- begin: refletions -->
 			<!-- https://mvnrepository.com/artifact/org.reflections/reflections -->
@@ -189,21 +121,10 @@
 			<!-- ********************** -->
 
 			<!-- ************** -->
-			<!-- begin: httpclient -->
-			<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
-			<dependency>
-				<groupId>org.apache.httpcomponents</groupId>
-				<artifactId>httpclient</artifactId>
-				<version>${httpclient.version}</version>
-			</dependency>
-			<!-- end: httpclient -->
-			<!-- ************** -->
-
-			<!-- ************** -->
 			<!-- begin: servlet -->
 			<dependency>
 				<groupId>javax.servlet</groupId>
-				<artifactId>servlet-api</artifactId>
+				<artifactId>javax.servlet-api</artifactId>
 				<version>${servlet-api.version}</version>
 				<scope>provided</scope>
 			</dependency>
@@ -216,7 +137,7 @@
 			<dependency>
 				<groupId>com.fasterxml.jackson.core</groupId>
 				<artifactId>jackson-annotations</artifactId>
-				<version>${fasterxml-jackson-core.version}</version>
+				<version>${jackson-bom.version}</version>
 			</dependency>
 			<!-- end: jackson -->
 			<!-- ************** -->

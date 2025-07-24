@@ -42,8 +42,15 @@
 		<reflections.version>0.9.11</reflections.version>
 		<springdoc-openapi-ui.version>1.7.0</springdoc-openapi-ui.version>
 
+    <!-- >>> begin: open-commons -->
 		<open-commons-core.version>2.1.0-SNAPSHOT</open-commons-core.version>
 		<open-commons-ssh.version>0.4.0-SNAPSHOT</open-commons-ssh.version>
+		<!-- >>> end: open-commons -->
+	
+    <!-- >>> begin: Validation -->
+    <code-findbugs-jsr305.version>3.0.2</code-findbugs-jsr305.version>
+    <!-- >>> end: Validation -->
+    
 	</properties>
 
 	<distributionManagement>
@@ -161,7 +168,6 @@
 			<!-- end: open.commons -->
 			<!-- ************** -->
 
-
 			<!-- ************** -->
 			<!-- begin: REST API Documentation -->
 
@@ -174,6 +180,17 @@
 
 			<!-- end: REST API Documentation -->
 			<!-- ************** -->
+			
+      <!-- ************** -->
+      <!-- >>> begin: Validation -->
+      <!-- https://mvnrepository.com/artifact/com.google.code.findbugs/jsr305 -->
+      <dependency>
+        <groupId>com.google.code.findbugs</groupId>
+        <artifactId>jsr305</artifactId>
+        <version>${code-findbugs-jsr305.version}</version>
+      </dependency>
+      <!-- <<< end: Validation -->
+      <!-- ************** -->
 		</dependencies>
 	</dependencyManagement>
 

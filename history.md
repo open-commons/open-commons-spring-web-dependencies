@@ -1,3 +1,8 @@
+[2025/07/24]
+- Dependencies
+  + Add
+    + com.google.code.findbugs:jsr305:3.0.2
+    
 [2025/02/21]
 Apply 'Maven Central Deployment'
 

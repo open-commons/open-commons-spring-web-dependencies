@@ -1,14 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.15</version>
-		<relativePath /> <!-- lookup parent from repository -->
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-dependencies</artifactId>
+    <version>4.0.3</version>
+    <relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>io.github.open-commons</groupId>
 	<artifactId>open-commons-spring-web-dependencies</artifactId>
-	<version>0.8.0-SNAPSHOT</version>
+	<version>4.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Open Commons Spring Web Dependencies</name>
 	<description>Open Commons Spring Web Projects common dependencies Management.</description>
@@ -38,18 +38,54 @@
 	</developers>
 
 	<properties>
-		<spring-boot.version>2.7.15</spring-boot.version>
-		<reflections.version>0.9.11</reflections.version>
-		<springdoc-openapi-ui.version>1.7.0</springdoc-openapi-ui.version>
-
-    <!-- >>> begin: open-commons -->
-		<open-commons-core.version>2.1.0-SNAPSHOT</open-commons-core.version>
-		<open-commons-ssh.version>0.4.0-SNAPSHOT</open-commons-ssh.version>
-		<!-- >>> end: open-commons -->
 	
-    <!-- >>> begin: Validation -->
-    <code-findbugs-jsr305.version>3.0.2</code-findbugs-jsr305.version>
-    <!-- >>> end: Validation -->
+    <!-- 하위 프로젝트가 이 프로젝트를 <parent>로 사용할 경우 상속됨 -->
+    <encoding>UTF-8</encoding>
+    <java.version>25</java.version>
+
+    <!-- >>> begin: build -->
+    <compile.encoding>UTF-8</compile.encoding>
+    <compile.source.version>25</compile.source.version>
+    <compile.target.version>25</compile.target.version>
+    
+    <!-- Maven Plugin 버전 (직접 관리) -->
+    <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+    <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
+    <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
+    <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
+  
+    <central-publishing-maven-plugin.version>0.7.0</central-publishing-maven-plugin.version>
+    <maven-gpg-plugin.version>3.2.7</maven-gpg-plugin.version>
+    <!-- <<< end: build -->
+
+    <!-- Spring Boot 버전, Framework 버전은 spring-boot-dependencies 에서 관리 -->
+    <!-- 'spring-boot-dependencies' 버전과 일치 -->
+    <spring-boot.version>4.0.3</spring-boot.version>
+     
+    <!--
+    [변경] springdoc-openapi 1.x → 3.x
+      1.x: Spring Boot 2.x 전용, artifactId: springdoc-openapi-ui
+      3.x: Spring Boot 4.x 지원, artifactId: springdoc-openapi-starter-webmvc-ui
+    -->
+    <springdoc-openapi.version>3.0.2</springdoc-openapi.version>
+    
+    <!-- Aspect -->
+    <spring-boot-starter-aop.version> 3.5.11</spring-boot-starter-aop.version>
+ 
+    <!-- >>> begin: dependencies -->
+    <!--
+    [변경] reflections 0.9.11 → 0.10.2 
+      ⚠️ 0.10.x API breaking change 있음:
+         getSubTypesOf() 등 → get(SubTypes.of(...)) 방식으로 변경
+    -->
+    <reflections.version>0.10.2</reflections.version>
+    <!-- log4j: 비동기 지원 -->
+    <disruptor.version>4.0.0</disruptor.version>
+ 
+    <!-- open-commons -->
+    <open-commons-core.version>3.0.0-SNAPSHOT</open-commons-core.version>
+    <open-commons-ssh.version>3.0.0-SNAPSHOT</open-commons-ssh.version>
+    <!-- <<< end: dependencies -->
     
 	</properties>
 
@@ -94,32 +130,16 @@
 
 	<dependencyManagement>
 		<dependencies>
-			<!-- ********************** -->
-			<!-- begin: spring-framework -->
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-core</artifactId>
-				<version>${spring-framework.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-webmvc</artifactId>
-				<version>${spring-framework.version}</version>
-			</dependency>
-			<!-- end: spring-framework -->
-			<!-- ********************** -->
-
-			<!-- ************** -->
-			<!-- begin: Pagination -->
-			<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-commons -->
-			<dependency>
-				<groupId>org.springframework.data</groupId>
-				<artifactId>spring-data-commons</artifactId>
-				<version>${spring-boot.version}</version>
-			</dependency>
-			<!-- end: Pagination -->
-			<!-- ************** -->
-
+      <!-- ************** -->
+      <!-- begin: Aspect -->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-aop</artifactId>
+        <version>${spring-boot-starter-aop.version}</version>
+      </dependency>
+      <!-- end: Aspect -->
+      <!-- ************** -->
+    
 			<!-- ********************** -->
 			<!-- begin: refletions -->
 			<!-- https://mvnrepository.com/artifact/org.reflections/reflections -->
@@ -130,67 +150,58 @@
 			</dependency>
 			<!-- end: reflections -->
 			<!-- ********************** -->
-
-			<!-- ************** -->
-			<!-- begin: servlet -->
-			<dependency>
-				<groupId>javax.servlet</groupId>
-				<artifactId>javax.servlet-api</artifactId>
-				<version>${servlet-api.version}</version>
-				<scope>provided</scope>
-			</dependency>
-			<!-- end: servlet -->
-			<!-- ************** -->
-
-			<!-- ************** -->
-			<!-- begin: jackson -->
-			<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
-			<dependency>
-				<groupId>com.fasterxml.jackson.core</groupId>
-				<artifactId>jackson-annotations</artifactId>
-				<version>${jackson-bom.version}</version>
-			</dependency>
-			<!-- end: jackson -->
-			<!-- ************** -->
-
-			<!-- ************** -->
-			<!-- begin: open.commons -->
-			<dependency>
-				<groupId>io.github.open-commons</groupId>
-				<artifactId>open-commons-core</artifactId>
-				<version>${open-commons-core.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>io.github.open-commons</groupId>
-				<artifactId>open-commons-ssh</artifactId>
-				<version>${open-commons-ssh.version}</version>
-			</dependency>
-			<!-- end: open.commons -->
-			<!-- ************** -->
-
+			
 			<!-- ************** -->
 			<!-- begin: REST API Documentation -->
-
-			<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui -->
-			<dependency>
-				<groupId>org.springdoc</groupId>
-				<artifactId>springdoc-openapi-ui</artifactId>
-				<version>${springdoc-openapi-ui.version}</version>
-			</dependency>
-
+			<!--
+      [변경] springdoc-openapi 1.x → 3.x
+        artifactId 변경:
+          springdoc-openapi-ui (1.x)
+            → springdoc-openapi-starter-webmvc-ui (2.x/3.x, Servlet)
+            → springdoc-openapi-starter-webflux-ui (2.x/3.x, Reactive)
+      -->
+      <!-- Source: https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui -->
+      <dependency>
+          <groupId>org.springdoc</groupId>
+          <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+          <version>${springdoc-openapi.version}</version>
+      </dependency>
+      <!-- Source: https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-api -->
+      <dependency>
+          <groupId>org.springdoc</groupId>
+          <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
+          <version>${springdoc-openapi.version}</version>
+      </dependency>
+      <!-- Source: https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webflux-ui -->
+      <dependency>
+          <groupId>org.springdoc</groupId>
+          <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
+          <version>${springdoc-openapi.version}</version>
+      </dependency>
+      <!-- Source: https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webflux-api -->
+      <dependency>
+          <groupId>org.springdoc</groupId>
+          <artifactId>springdoc-openapi-starter-webflux-api</artifactId>
+          <version>${springdoc-openapi.version}</version>
+      </dependency>
 			<!-- end: REST API Documentation -->
 			<!-- ************** -->
-			
+      
       <!-- ************** -->
-      <!-- >>> begin: Validation -->
-      <!-- https://mvnrepository.com/artifact/com.google.code.findbugs/jsr305 -->
+      <!-- begin: open.commons -->
       <dependency>
-        <groupId>com.google.code.findbugs</groupId>
-        <artifactId>jsr305</artifactId>
-        <version>${code-findbugs-jsr305.version}</version>
+        <groupId>io.github.open-commons</groupId>
+        <artifactId>open-commons-core</artifactId>
+        <version>${open-commons-core.version}</version>
       </dependency>
-      <!-- <<< end: Validation -->
+      <dependency>
+        <groupId>io.github.open-commons</groupId>
+        <artifactId>open-commons-ssh</artifactId>
+        <version>${open-commons-ssh.version}</version>
+      </dependency>
+      <!-- end: open.commons -->
       <!-- ************** -->
+      
 		</dependencies>
 	</dependencyManagement>
 
@@ -202,6 +213,11 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>${maven-compiler-plugin.version}</version>
+          <configuration>
+            <encoding>${encoding}</encoding>
+            <source>${compile.source.version}</source>
+            <target>${compile.target.version}</target>
+          </configuration>
 				</plugin>
 				<!-- <<< end: compile -->
 				<!-- >>> begin: source -->
@@ -209,6 +225,16 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-source-plugin</artifactId>
 					<version>${maven-source-plugin.version}</version>
+          <configuration>
+          </configuration>
+          <executions>
+            <execution>
+              <id>attach-sources</id>
+              <goals>
+                <goal>jar-no-fork</goal>
+              </goals>
+            </execution>
+          </executions>
 				</plugin>
 				<!-- <<< end: source -->
 				<!-- >>> begin: javadoc -->
@@ -216,6 +242,24 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-javadoc-plugin</artifactId>
 					<version>${maven-javadoc-plugin.version}</version>
+          <configuration>
+            <show>private</show>
+            <nohelp>true</nohelp>
+            <additionalOptions>
+              <additionalOption>-Xdoclint:none</additionalOption>
+            </additionalOptions>
+            <charset>${encoding}</charset>
+            <docencoding>${encoding}</docencoding>
+            <encoding>${encoding}</encoding>
+          </configuration>
+          <executions>
+            <execution>
+              <id>attach-javadocs</id>
+              <goals>
+                <goal>jar</goal>
+              </goals>
+            </execution>
+          </executions>
 				</plugin>
 				<!-- <<< end: javadoc -->
 			</plugins>
@@ -226,7 +270,7 @@
 			<plugin>
 				<groupId>org.sonatype.central</groupId>
 				<artifactId>central-publishing-maven-plugin</artifactId>
-				<version>0.7.0</version>
+				<version>${central-publishing-maven-plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>
 					<publishingServerId>maven-central</publishingServerId>
@@ -238,7 +282,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-gpg-plugin</artifactId>
-				<version>1.5</version>
+				<version>${maven-gpg-plugin.version}</version>
 				<executions>
 					<execution>
 						<id>sign-artifacts</id>

@@ -209,14 +209,17 @@
       <dependency>
         <groupId>org.apache.logging.log4j</groupId>
         <artifactId>log4j-core</artifactId>
+        <version>${log4j2.version}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.logging.log4j</groupId>
         <artifactId>log4j-api</artifactId>
+        <version>${log4j2.version}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.logging.log4j</groupId>
         <artifactId>log4j-slf4j2-impl</artifactId>
+        <version>${log4j2.version}</version>
       </dependency>
       <!-- <<< end: logging -->
       <!-- ********************** -->
@@ -233,7 +236,42 @@
         <artifactId>open-commons-ssh</artifactId>
         <version>${open-commons-ssh.version}</version>
       </dependency>
+      <dependency>
+        <groupId>io.github.open-commons</groupId>
+        <artifactId>open-commons-spring-web</artifactId>
+        <version>${open-commons-spring-web.version}</version>
+      </dependency>
       <!-- end: open.commons -->
+      <!-- ************** -->
+      
+       <!-- ************** -->
+      <!-- >>> begin: Validation -->
+      <!--
+      https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api -->
+      <dependency>
+        <groupId>jakarta.validation</groupId>
+        <artifactId>jakarta.validation-api</artifactId>
+        <version>${jakarta-validation.version}</version>
+      </dependency>
+      <!-- <<< end: Validation -->
+      <!-- ************** -->
+
+      <!-- ************** -->
+      <!-- >>> begin: Annotation -->
+      <!-- Source: https://mvnrepository.com/artifact/org.jspecify/jspecify -->
+      <dependency>
+        <groupId>org.jspecify</groupId>
+        <artifactId>jspecify</artifactId>
+        <version>${jspecify.version}</version>
+      </dependency>
+      <!--
+      https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api -->
+      <dependency>
+        <groupId>jakarta.annotation</groupId>
+        <artifactId>jakarta.annotation-api</artifactId>
+        <version>${jakarta-annotation.version}</version>
+      </dependency>
+      <!-- <<< end: Annotation -->
       <!-- ************** -->
 
     </dependencies>

@@ -243,8 +243,8 @@
       </dependency>
       <!-- end: open.commons -->
       <!-- ************** -->
-      
-       <!-- ************** -->
+
+      <!-- ************** -->
       <!-- >>> begin: Validation -->
       <!--
       https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api -->
@@ -364,7 +364,7 @@
         <configuration>
           <publishingServerId>maven-central</publishingServerId>
           <!-- autoPublish>true</autoPublish>
-             		<waitUntil>published</waitUntil -->
+                <waitUntil>published</waitUntil -->
         </configuration>
       </plugin>
       <!-- GPG signature plugin -->

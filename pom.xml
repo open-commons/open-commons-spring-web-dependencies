@@ -140,15 +140,22 @@
 
   <dependencyManagement>
     <dependencies>
-      <!-- ************** -->
-      <!-- begin: Aspect -->
+      <!-- ********************** -->
+      <!-- begin: spring boot -->
+      <!-- Aspect -->
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-aop</artifactId>
         <version>${spring-boot-starter-aop.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
-      <!-- end: Aspect -->
-      <!-- ************** -->
+      <!-- end: spring boot -->
+      <!-- ********************** -->
 
       <!-- ********************** -->
       <!-- begin: refletions -->

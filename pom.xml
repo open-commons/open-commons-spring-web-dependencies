@@ -280,23 +280,6 @@
   <build>
     <pluginManagement>
       <plugins>
-        <!-- begin: make 'clean external directories' -->
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-clean-plugin</artifactId>
-          <configuration>
-            <filesets>
-              <fileset>
-                <directory>deploy/${build.profile}</directory>
-                <includes>
-                  <include>**/*</include>
-                </includes>
-                <followSymlinks>false</followSymlinks>
-              </fileset>
-            </filesets>
-          </configuration>
-        </plugin>
-        <!-- end: make 'clean external directories' -->
         <!-- >>> begin: compile -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>

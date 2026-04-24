@@ -296,7 +296,6 @@
             <encoding>${encoding}</encoding>
             <release>${compile.target.version}</release>
             <compilerArgs>
-              <arg>--enable-preview</arg>
             </compilerArgs>
           </configuration>
         </plugin>

@@ -294,8 +294,10 @@
           <version>${maven-compiler-plugin.version}</version>
           <configuration>
             <encoding>${encoding}</encoding>
-            <source>${compile.source.version}</source>
-            <target>${compile.target.version}</target>
+            <release>${compile.target.version}</release>
+            <compilerArgs>
+              <arg>--enable-preview</arg>
+            </compilerArgs>
           </configuration>
         </plugin>
         <!-- <<< end: compile -->

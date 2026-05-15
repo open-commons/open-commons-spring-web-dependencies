@@ -1,3 +1,18 @@
+[2026/05/15]
+- pom.xml
+  - '-parameters' 컴파일 옵션 추가.  
+    ```
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-compiler-plugin</artifactId>
+      <version>${maven-compiler-plugin.version}</version>
+      <configuration>
+        ...
+        <parameters>true</parameters>
+        ...
+      </configuration>
+    </plugin>
+    ```
 [2026/04/22]
 - 추가
   + 'org.apache.logging.log4j' 하위 artifact에 ${log4j2.version} 설정

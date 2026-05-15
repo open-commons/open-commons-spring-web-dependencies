@@ -516,6 +516,7 @@
           <configuration>
             <encoding>${encoding}</encoding>
             <release>${compile.target.version}</release>
+            <parameters>true</parameters>
             <compilerArgs>
             </compilerArgs>
           </configuration>
